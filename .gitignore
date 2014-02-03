@@ -22,6 +22,8 @@ local.properties
 .settings/
 .loadpath
 
+.save
+
 # External tool builders
 .externalToolBuilders/
 
@@ -48,3 +50,4 @@ build
 # Database
 *.db
 *.3db
+
