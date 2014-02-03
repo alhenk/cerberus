@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<project name="cerberus"  basedir="." default="run" >
+
+	<property name="debuglevel" value="source,lines,vars"/>
+	<property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+
+	<property name="src.dir" location="src" />
+    <property name="build.dir" location="build" />
+    <property name="dist.dir" location="dist" />
+
+	<echo level="error" message="running" />
+
+	<path id="hidapi.classpath">
+		<pathelement location="build"/>
+		<pathelement location="lib/sqlite-jdbc-3.7.2.jar"/>
+        <pathelement location="lib/hidapi-1.1.jar"/>
+		<pathelement location="lib/log4j-1.2.17.jar"/>
+		<fileset dir="/opt/pi4j/lib" includes="**/*.jar" />
+    </path>
+
+	<target name="init">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${dist.dir}" />
+		<copy file="./resources/log4j.properties" todir="${build.dir}"/>
+	</target>
+
+	<target name="build" depends="build-project" />
+	<target name="build-project" depends="init" 
+			description= "Compiles the source code" >
+		<echo message="${ant.project.name}: ${ant.file}"/>
+		<javac 	includeantruntime="true"
+				debug="true" 
+	            debuglevel="${debuglevel}"
+				destdir="${build.dir}"
+				fork="yes"
+            	executable="/opt/jdk1.8.0/bin/javac"
+				compiler="javac1.8"
+				source="${source}" 
+            	target="${target}"
+				srcdir="${src.dir}">
+				<src path="src"/>
+				<classpath refid="hidapi.classpath"/>
+		</javac>
+	</target>
+		
+	<target name="archive" depends="build-project"
+			description="Creates the JAR file">
+		<jar destfile="dist/cerberus.jar"
+			basedir="${build.dir}" />
+	</target>
+		
+	<target name="clean" depends="init">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<target name="run" depends="build-project, archive">
+        <java classname="com.trei.cerberus.Runner" failonerror="true" fork="yes">
+            <classpath refid="hidapi.classpath"/>
+            <jvmarg value="-Djava.library.path=/usr/local/lib/"/>
+        </java>
+    </target>
+	
+</project>

@@ -1,0 +1,17 @@
+package com.trei.cerberus.cardreader;
+
+public enum Code {
+
+	/* 0*/UID_OK,
+	/* 1*/NO_UID,
+	/* 2*/UNKNOWN_COMMAND,
+	/* 3*/ECHO_NO_ANSWER,
+	/* 4*/INVALID_COMMAND_LENGTH,
+	/* 5*/INVALID_PROTOCOL,
+	/* 6*/COMMUNICATION_ERROR,
+	/* 7*/INVALID_SOF,
+	/* 8*/RECEIVE_BUFFER_OVERFLOW,
+	/* 9*/FRAMING_ERROR,
+	/*10*/RECEPTION_LOST_WITHOUT_EOF_RECEIVED
+
+}

@@ -1,0 +1,4 @@
+#!/bin/bash
+sudo java -Djava.library.path=/usr/local/lib/ -cp /home/pi/cerberus/build:/home/pi/cerberus/lib/hidapi-1.1.jar:/home/pi/cerberus/lib/sqlite-jdbc-3.7.2.jar:/opt/pi4j/lib/*:/home/pi/cerberus/lib/log4j-1.2.17.jar   com.trei.cerberus.Runner
+
+
