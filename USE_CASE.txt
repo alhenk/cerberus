@@ -1,0 +1,49 @@
+Cerberus
+
+USE CASE: Description
+A door is closed and locked.
+An employee applys a card to Cerberus on the door.
+The Cerberus reads the card's UID with a cardreader and checks it in a database.
+If the UID is valid then Cerberus unlocks the door, sets a 30s timer up and makes a record to the database.
+If the door is open beyond the 30s interval after Cerberus has unlocked it then Cerberus raises an alarm and makes a record to the database.
+
+Triggers
+1. An employee applys a card to Cerberus on the door (Cerberus gets an UID).
+2. The door is open
+
+Actors
+1. An employee who applys a card
+2. Cerberus
+3. A cardreader
+4. A card
+5. A database
+6. A door
+7. A timer
+8. An alarm
+
+Preconditions
+1. A door, Cerberus, a card, an employee, a database, a timer, an alarm are available
+
+Goals
+1. Unlock the door only if an employee has a card with a valid UID
+2. Keep the door mostly closed.
+3. Raise an alarm in case of unauthorized entry.
+
+Not Available
+
+Failed Conclusion, Extentions (Alternatives)
+
+
+Steps of Execution
+
+1)	Cerberus checks the door
+2)	Cerberus checks the timer 
+3)	Cerberus raises an alarm and makes a record to a database 
+	if the door is open and the timer is down
+4)	Cerberus reads a card UID with a cardreader
+5)	Cerberus checks the UID in database
+6)	Cerberus unlocks the door if UID is valid then set the timer up and makes a record to a database
+7)  Try again
+
+
+
